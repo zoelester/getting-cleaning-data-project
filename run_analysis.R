@@ -31,7 +31,7 @@ test$activitynumber<-y.test[,1]
 total<-rbind(train,test)
 
 #Extract only the measurements on the mean and standard deviation for each measurement. Assume here we don't want meanFreq().
-total<- total[,grep("mean\\(\\)|std\\(\\)|activityname|subject",names(total))]
+total<- total[,grep("mean\\(\\)|std\\(\\)|activitynumber|subject",names(total))]
 
 #add useful column names to the activity labels data
 names(activity.labels)<- c("activitynumber","activityname")
@@ -56,7 +56,7 @@ names(total)<- n
 tidydata<- group_by(total,activityname,subject) %>% summarize_all(mean)
 
 #Writes the final, tidy dataset out to txt file without rownames. 
-write.table(tidy,file="tidydata.txt",row.name=FALSE)
+write.table(tidydata,file="tidydata.txt",row.name=FALSE)
 
 #You can uncomment this code to read in & view the saved dataset. 
 #data <- read.table("tidydata.txt", header = TRUE)
